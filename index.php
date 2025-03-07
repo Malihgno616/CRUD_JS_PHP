@@ -25,26 +25,12 @@ include_once "conexao.php";
       </div>
       <hr>
       <div class="row">
-        <div class="col-lg-12">
-          <div class="table-responsive">
-              <table class="table table-dark table-striped">
-                <thead>
-                  <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
+        <div class="col-lg-12">             
+              <span class="listar-usuarios">
 
-                </tbody>
-              </table>
-          </div>
+              </span>       
         </div>
-        
       </div>
-        
     </div>
 
   <script src="js/custom.js"></script>
