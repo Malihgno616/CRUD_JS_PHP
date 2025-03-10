@@ -7,12 +7,12 @@ $datas = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 if (empty($datas['nome'])){
  
   $return = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>
-    Erro: Preencha seu nome!"];
+    Erro: Preencha seu nome!</div>"];
 
   } elseif (empty($datas['email'])) {
 
     $return = ['erro' => true, 'msg' => "<div class='alert alert-danger' role='alert'>
-    Erro: Preencha seu email!"];
+    Erro: Preencha seu email!</div>"];
 
   } else {
 

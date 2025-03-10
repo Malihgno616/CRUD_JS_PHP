@@ -22,29 +22,38 @@ cadForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   // console.log("Cadastrado");
 
-  const dataForm = new FormData(cadForm);
-
-  dataForm.append("add", 1);
-  // console.log(dataForm);
-
   document.getElementById("cad-usuario-btn").value = "Salvando...";
 
-  const datas = await fetch("cadastrar.php", {
-    method: "POST",
-    body: dataForm,
-  });
-
-  const response = await datas.json();
-  // console.log(response);
-
-  if (response["erro"]) {
-    msgAlertError.innerHTML = response["msg"];
+  if (document.getElementById("nome").value === "") {
+    console.log("Erro: Preencha seu nome!");
+    msgAlertError.innerHTML =
+      "<div class='alert alert-danger' role='alert'>Erro: Preencha seu nome!</div>";
+  } else if (document.getElementById("email").value === "") {
+    console.log("Erro: Preencha seu e-mail!");
+    msgAlertError.innerHTML =
+      "<div class='alert alert-danger' role='alert'>Erro: Preencha seu e-mail!</div>";
   } else {
-    msgAlert.innerHTML = response["msg"];
-    cadForm.reset();
-    cadModal.hide();
+    const dataForm = new FormData(cadForm);
 
-    listUsers(1);
+    dataForm.append("add", 1);
+    // console.log(dataForm);
+
+    const datas = await fetch("cadastrar.php", {
+      method: "POST",
+      body: dataForm,
+    });
+
+    const response = await datas.json();
+    // console.log(response);
+
+    if (response["erro"]) {
+      msgAlertError.innerHTML = response["msg"];
+    } else {
+      msgAlert.innerHTML = response["msg"];
+      cadForm.reset();
+      cadModal.hide();
+      listUsers(1);
+    }
   }
 
   document.getElementById("cad-usuario-btn").value = "Cadastrar";
