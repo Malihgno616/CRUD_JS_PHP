@@ -105,6 +105,49 @@ include_once "conexao.php";
         </div>
     </div>
 
+    <div class="modal fade" 
+         id="editUsuarioModal" 
+         tabindex="-1" 
+         aria-labelledby="editUsuarioModalLabel" 
+         aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editUsuarioModalLabel">Editar Usuário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <form id="edit-usuario-form">
+                  <span id="msgAlertErrorEdit"></span>
+                  <input type="hidden" name="id" id="editId">
+
+                  <div class="mb-3">
+                    <label for="nome" class="col-form-label">Nome:</label>
+                    <input type="text" name="nome" placeholder="Digite o nome completo" class="form-control" id="editNome" >
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="email" class="col-form-label">Email:</label>
+                    <input type="text" name="email" placeholder="Digite o seu melhor email" class="form-control" id="editEmail" >
+                  </div>
+
+                  <div class="modal-footer">
+                    <button 
+                    type="button" 
+                    class="btn btn-outline-danger btn-sm" data-bs-dismiss="modal"
+                    >Fechar</button>
+                    <input 
+                    type="submit"
+                    id="edit-usuario-btn"
+                    class="btn btn-outline-warning btn-sm" value="Salvar"/>
+                  </div>
+                
+                </form>
+            </div> 
+          </div>
+        </div>
+    </div>
+
   <script src="js/custom.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   

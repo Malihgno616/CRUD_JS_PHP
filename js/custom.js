@@ -2,7 +2,11 @@ const tbody = document.querySelector(".listar-usuarios");
 
 const cadForm = document.getElementById("cad-usuario-form");
 
+const editForm = document.getElementById("edit-usuario-form");
+
 const msgAlertError = document.getElementById("msgAlertError");
+
+const msgAlertErrorEdit = document.getElementById("msgAlertErrorEdit");
 
 const msgAlert = document.getElementById("msgAlert");
 
@@ -10,6 +14,7 @@ const cadModal = new bootstrap.Modal(
   document.getElementById("cadUsuarioModal")
 );
 
+// Lista os usuários
 const listUsers = async (page) => {
   const data = await fetch("./list.php?page=" + page);
   const response = await data.text();
@@ -18,6 +23,7 @@ const listUsers = async (page) => {
 
 listUsers(1);
 
+// Modal Formulário de cadastro
 cadForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   // console.log("Cadastrado");
@@ -59,6 +65,7 @@ cadForm.addEventListener("submit", async (e) => {
   document.getElementById("cad-usuario-btn").value = "Cadastrar";
 });
 
+// Visualizar usuário
 async function viewUser(id) {
   // console.log("Acessou: " + id);
   const datas = await fetch("view.php?id=" + id);
@@ -78,3 +85,52 @@ async function viewUser(id) {
     document.getElementById("emailUser").innerHTML = response["datas"].email;
   }
 }
+
+// Editar usuário
+async function editUser(id) {
+  msgAlertErrorEdit.innerHTML = "";
+
+  const datas = await fetch("view.php?id=" + id);
+  const response = await datas.json();
+  // console.log(response);
+
+  if (response["erro"]) {
+    msgAlert.innerHTML = response["msg"];
+  } else {
+    const editModal = new bootstrap.Modal(
+      document.getElementById("editUsuarioModal")
+    );
+    editModal.show();
+
+    document.getElementById("editId").value = response["datas"].id;
+    document.getElementById("editNome").value = response["datas"].nome;
+    document.getElementById("editEmail").value = response["datas"].email;
+  }
+}
+
+editForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  document.getElementById("edit-usuario-form").value = "Salvando...";
+
+  const dataForm = new FormData(editForm);
+  // console.log(dataForm);
+  // for (var dataFormEdit of datas.entries()) {
+  //   console.log(dataFormEdit[0] + " - " + dataFormEdit[1]);
+  // }
+
+  const datas = await fetch("edit.php", {
+    method: "POST",
+    body: dataForm,
+  });
+
+  const response = await datas.json();
+
+  if (response["erro"]) {
+    msgAlertErrorEdit.innerHTML = response["msg"];
+  } else {
+    msgAlertErrorEdit.innerHTML = response["msg"];
+    listUsers(1);
+  }
+  document.getElementById("edit-usuario-form").value = "Salvar";
+});

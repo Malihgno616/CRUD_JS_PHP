@@ -36,6 +36,7 @@ if (!empty($page)){
               <td>$email</td>
               <td>
                 <button id='$id' class='btn btn-outline-primary btn-sm' onclick='viewUser($id)'>Visualizar</button>
+                <button id='$id' class='btn btn-outline-warning btn-sm' onclick='editUser($id)'>Editar</button>
               </td>
               </tr>";
   }
