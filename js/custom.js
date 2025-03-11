@@ -108,6 +108,7 @@ async function editUser(id) {
   }
 }
 
+// formulário para salvar
 editForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -134,3 +135,24 @@ editForm.addEventListener("submit", async (e) => {
   }
   document.getElementById("edit-usuario-form").value = "Salvar";
 });
+
+async function deleteUser(id) {
+  var confirma = confirm("Tem certeza que deseja excluir este registro?");
+
+  if (confirma == true) {
+    console.log("Acessou " + id);
+
+    const datas = await fetch("delete.php?id=" + id);
+
+    const response = await datas.json();
+
+    if (response["erro"]) {
+      msgAlert.innerHTML = response["msg"];
+    } else {
+      msgAlert.innerHTML = response["msg"];
+      listUsers(1);
+    }
+  } 
+
+  
+}
