@@ -78,6 +78,33 @@ include_once "conexao.php";
         </div>
     </div>
 
+
+    <div class="modal fade" 
+         id="viewUsuarioModal" 
+         tabindex="-1" 
+         aria-labelledby="viewUsuarioModalLabel" 
+         aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="viewUsuarioModalLabel">Detalhes do Usuário</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+            <div class="modal-body">
+                <span id="msgAlertErrorView"></span>   
+                  <dl class="row">
+                    <dt class="col-sm-3">ID</dt>
+                    <dd class="col-sm-9"><span id="idUser"></span></dd>
+                    <dt class="col-sm-3">Nome</dt>
+                    <dd class="col-sm-9"><span id="nameUser"></span></dd>
+                    <dt class="col-sm-3">E-mail</dt>
+                    <dd class="col-sm-9"><span id="emailUser"></span></dd>
+                  </dl>
+            </div> 
+          </div>
+        </div>
+    </div>
+
   <script src="js/custom.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   

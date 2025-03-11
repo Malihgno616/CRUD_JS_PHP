@@ -58,3 +58,23 @@ cadForm.addEventListener("submit", async (e) => {
 
   document.getElementById("cad-usuario-btn").value = "Cadastrar";
 });
+
+async function viewUser(id) {
+  // console.log("Acessou: " + id);
+  const datas = await fetch("view.php?id=" + id);
+  const response = await datas.json();
+  // console.log(response);
+
+  if (response["erro"]) {
+    msgAlert.innerHTML = response["msg"];
+  } else {
+    const viewModal = new bootstrap.Modal(
+      document.getElementById("viewUsuarioModal")
+    );
+    viewModal.show();
+
+    document.getElementById("idUser").innerHTML = response["datas"].id;
+    document.getElementById("nameUser").innerHTML = response["datas"].nome;
+    document.getElementById("emailUser").innerHTML = response["datas"].email;
+  }
+}
